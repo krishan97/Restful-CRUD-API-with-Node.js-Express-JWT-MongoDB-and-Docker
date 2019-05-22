@@ -36,7 +36,7 @@ module.exports.decode = (req, res, next) => {
     res.sendStatus(401);
     return false;
   }
-  jwt.verify(accessToken[2], message.JWT_SECRET, (err, decoded) => {
+  jwt.verify(accessToken[1], message.JWT_SECRET, (err, decoded) => {
     if (err) {
       res.sendStatus(401);
     } else {

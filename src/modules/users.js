@@ -5,7 +5,7 @@
  */
 
 const mongoose = require('mongoose');
-const { errorHandler } = require('./../handler/error.handler');
+const { getErrorMessage } = require('./../handler/error.handler');
 const user = mongoose.model('users');
 // User Create Profile
 module.exports.create = (req, res) => {
@@ -14,7 +14,7 @@ module.exports.create = (req, res) => {
     doc.save((err) => {
       if (err) {
         res.status(400).send({
-          message: errorHandler.getErrorMessage(err),
+          message: getErrorMessage(err),
         });
       } else {
         res.sendStatus(200);
@@ -34,7 +34,7 @@ module.exports.login = (req, res, next) => {
     }, { password: 0, _id: 0 }, (err, doc) => {
       if (err) {
         res.status(400).send({
-          message: errorHandler.getErrorMessage(err),
+          message: getErrorMessage(err),
         });
       } else {
         res.userinfo = doc;
@@ -70,7 +70,7 @@ module.exports.update = (req, res, ) => {
     }, req.body, (err) => {
       if (err) {
         res.status(400).send({
-          message: errorHandler.getErrorMessage(err),
+          message: getErrorMessage(err),
         });
       } else {
         res.sendStatus(204);
@@ -90,7 +90,7 @@ module.exports.userCheck = (req, res, next) => {
     }, { _id: 0, password: 0 }, (err, doc) => {
       if (err) {
         res.status(400).send({
-          message: errorHandler.getErrorMessage(err),
+          message: getErrorMessage(err),
         });
       } else if (doc === null || doc.length === 0) {
         res.sendStatus(401);
@@ -113,7 +113,7 @@ module.exports.delete = (req, res, ) => {
     }, (err) => {
       if (err) {
         res.status(400).send({
-          message: errorHandler.getErrorMessage(err),
+          message: getErrorMessage(err),
         });
       } else {
         res.sendStatus(204);

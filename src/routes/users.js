@@ -22,3 +22,4 @@ module.exports = (app) => {
     .patch(jwtAuth.decode, users.userCheck, users.update)
     .delete(jwtAuth.decode, users.delete);
 };
+

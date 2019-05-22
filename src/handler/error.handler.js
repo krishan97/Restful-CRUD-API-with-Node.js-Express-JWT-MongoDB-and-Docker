@@ -2,7 +2,7 @@
 /**
  * Get unique error field name
  */
-const getUniqueErrorMessage = function(err) {
+const getUniqueErrorMessage = (err) => {
   let output;
   try {
     const fieldName = err.errmsg.indexOf('{ :');
@@ -20,13 +20,13 @@ const getUniqueErrorMessage = function(err) {
 /**
  * Get the error message from error object
  */
-exports.getErrorMessage = function(err) {
+module.exports.getErrorMessage =  (err) => {
   let message = err.message;
   if (err.code) {
     switch (err.code) {
     case 11000:
     case 11001:
-      message = getUniqueErrorMessage(err);
+      message =  getUniqueErrorMessage(err);
       break;
     default:
       message = 'Something went wrong';

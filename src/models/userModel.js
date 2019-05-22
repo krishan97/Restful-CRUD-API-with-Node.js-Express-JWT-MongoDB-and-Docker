@@ -3,7 +3,7 @@
  * User Schema
  */
 
-module.exports = function(mongoose) {
+module.exports = (mongoose) => {
   const Schema = mongoose.Schema,
     validation = require('./validationModel'),
     UserSchema = new Schema({
